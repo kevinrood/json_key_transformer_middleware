@@ -6,7 +6,7 @@ Incoming JSON keys are transformed from `camelCase` to `snake_case`. Outgoing JS
 
 ## Installation
 
-Add this to your test suite's Gemfile:
+Add this to your Gemfile:
 
     gem 'json_key_transformer_middleware'
 
