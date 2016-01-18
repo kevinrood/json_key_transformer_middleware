@@ -15,5 +15,5 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency('oj', '2.14.2')
   gem.add_runtime_dependency('oj_mimic_json', '1.0.1')
-  gem.add_runtime_dependency('rails', '5.0.0.beta1')
+  gem.add_runtime_dependency('rails', '>= 5.0.0.beta1')
 end
