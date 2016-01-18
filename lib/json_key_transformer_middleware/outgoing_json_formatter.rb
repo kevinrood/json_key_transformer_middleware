@@ -12,9 +12,13 @@ module JsonKeyTransformerMiddleware
       status, headers, body = @app.call(env)
 
       new_body = body.each.map do |body_part|
-        Oj.dump(
-          deep_transform_hash_keys(
-            Oj.load(body_part), :underscore_to_camel))
+        begin
+          Oj.dump(
+            deep_transform_hash_keys(
+              Oj.load(body_part), :underscore_to_camel))
+        rescue
+          body_part
+        end
       end
 
       [status, headers, new_body]
