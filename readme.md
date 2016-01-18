@@ -22,6 +22,41 @@ Or, install it directly:
 
 Simply including the gem in the Gemfile for a Rails application will initialize the rack middleware which transforms incoming and outgoing JSON keys.
 
+The purpose of this gem is to:
+
+1. Transform incoming parameter names from JSON-style `camelCase` to Ruby-style `snake_case`. Clients send `camelCase` parameters, you work with `snake_case` params in your Rails controllers.
+1. Transform outgoing parameter names from Ruby-style `snake_case` to JSON-style `camelCase`. When rendering a JSON response, you send a `snake_case` hash response, the client will receive a `camelCase` response.
+
+In both cases the transformation process walks the entire incoming and outgoing data structure.
+
+*Incoming transformation example*
+
+From (JSON):
+
+```
+    {"paramName": "value", "paramName2": [{"paramName3": "value"}]}
+```
+
+To (Rails params):
+
+```
+    {"param_name" => "value", "param_name2" => [{"param_name3" => "value"}]}
+```
+
+*Outgoing transformation example*
+
+From (Rails response):
+
+```
+    {"param_name" => "value", "param_name2" => [{"param_name3" => "value"}]}
+```
+
+To (JSON):
+
+```
+    {"paramName": "value", "paramName2": [{"paramName3": "value"}]}
+```
+
 ## Notes
 
 This gem serves a very specific purpose. As such, it only targets a specific version of Rails. Over time more versions of Rails may be supported.
