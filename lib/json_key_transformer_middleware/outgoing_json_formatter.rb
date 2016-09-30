@@ -21,7 +21,7 @@ module JsonKeyTransformerMiddleware
     def build_new_body(body)
       Enumerator.new do |yielder|
         body.each do |body_part|
-          yielder << transform_outgoing_body_part(body_part)
+          yielder << (body_part != '' ? transform_outgoing_body_part(body_part) : '')
         end
       end
     end
