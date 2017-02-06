@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    json_key_transformer_middleware (0.2.0)
+    json_key_transformer_middleware (0.2.1)
       oj (~> 2.0)
       oj_mimic_json (~> 1.0)
       rails (~> 5.0)
@@ -67,7 +67,7 @@ GEM
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
-    oj (2.14.2)
+    oj (2.17.4)
     oj_mimic_json (1.0.1)
     pkg-config (1.1.7)
     rack (2.0.1)
@@ -119,4 +119,4 @@ DEPENDENCIES
   json_key_transformer_middleware!
 
 BUNDLED WITH
-   1.11.2
+   1.13.2
