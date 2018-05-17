@@ -25,7 +25,7 @@ module JsonKeyTransformerMiddleware
 
     # 'key_name' -> 'keyName'
     def underscore_to_camel(key)
-      key.gsub(/_([a-z0-9])/) { $1.upcase }
+      key.gsub(/(?!^)_([a-z0-9])/) { $1.upcase }
     end
   end
 
