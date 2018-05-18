@@ -15,6 +15,7 @@ Gem::Specification.new do |gem|
   gem.homepage    = 'https://github.com/kevinrood/json_key_transformer_middleware'
   gem.license     = 'Apache-2.0'
 
+  gem.add_runtime_dependency('hash_key_transformer', '~> 0.1')
   gem.add_runtime_dependency('oj', '~> 2.0')
   gem.add_runtime_dependency('oj_mimic_json', '~> 1.0')
   gem.add_runtime_dependency('rails', '~> 5.0')

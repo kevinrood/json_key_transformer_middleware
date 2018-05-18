@@ -1,18 +1,14 @@
+require 'hash_key_transformer'
 require 'oj'
 
 module JsonKeyTransformerMiddleware
 
   class IncomingJsonFormatter < Middleware
 
-    def initialize(app)
-      @app = app
-    end
-
     def call(env)
-      result =
-        Oj.dump(
-          deep_transform_hash_keys(
-            Oj.load(env['rack.input'].read), :camel_to_underscore))
+      object = Oj.load(env['rack.input'].read)
+      transformed_object = HashKeyTransformer.send(middleware_config.incoming_strategy, object, middleware_config.incoming_strategy_options)
+      result = Oj.dump(transformed_object, mode: :compat)
 
       env['rack.input'] = StringIO.new(result)
       # Rails uses this elsewhere to parse 'rack.input', it must be updated to avoid truncation
