@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     json_key_transformer_middleware (0.2.2)
-      hash_key_transformer (~> 0.1)
+      hash_key_transformer (~> 0.1.3)
       oj (~> 2.0)
       oj_mimic_json (~> 1.0)
       rails (~> 5.0)
