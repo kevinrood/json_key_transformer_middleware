@@ -1,12 +1,9 @@
+require 'hash_key_transformer'
 require 'oj'
 
 module JsonKeyTransformerMiddleware
 
   class OutgoingJsonFormatter < Middleware
-
-    def initialize(app)
-      @app = app
-    end
 
     def call(env)
       status, headers, body = @app.call(env)
@@ -28,9 +25,9 @@ module JsonKeyTransformerMiddleware
 
     def transform_outgoing_body_part(body_part)
       begin
-        Oj.dump(
-          deep_transform_hash_keys(
-            Oj.load(body_part), :underscore_to_camel))
+        object = Oj.load(body_part)
+        transformed_object = HashKeyTransformer.send(middleware_config.outgoing_strategy, object, middleware_config.outgoing_strategy_options)
+        Oj.dump(transformed_object, mode: :compat)
       rescue
         body_part
       end
