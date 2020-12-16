@@ -8,6 +8,8 @@ module JsonKeyTransformerMiddleware
     def call(env)
       status, headers, body = @app.call(env)
 
+      return [status, headers, body] if should_skip?(env)
+
       new_body = build_new_body(body)
 
       [status, headers, new_body]
